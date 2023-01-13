@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<header>
+    <p>current user: {{current_user}}</p>
+    <a href="/logout">dang xuat</a>
+</header>
+<body>
+
+<h2>Topic</h2>
+<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+<table style="width:100%">
+  <tr>
+    <th>user</th>
+    <th>Comment</th>
+    <th>Likes</th>
+    <th></th>
+  </tr>
+  {% for comment in list_comments %}
+  <tr>
+    <td>{{comment.username}}</td>
+    <td>{{comment.content}}</td>
+    <td>{{comment.likes}}</td>
+    {% if comment.username==current_user%}
+    <td>
+        <a href="/like/{{comment._id}}/{{current_user}}">Like</a>
+        <a href="/edit/{{comment._id}}">Sửa</a>
+        <a href="">Xóa</a>
+    </td>
+    {% else %}
+    <td>
+        <a href="/like/{{comment._id}}/{{current_user}}">Like</a>
+    </td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+
+<form method="POST">
+    <input type="text" name="comment_content" placeholder="nhap comment">
+    <button type="submit">gui</button>
+</form>
+
+</body>
+</html>
+
